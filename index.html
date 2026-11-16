@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Germán Videos Musicales</title>
+    <meta name="description" content="Convierte tus canciones en videos musicales con letras dinámicas sincronizadas, estilos personalizados, historias web, cámara, Google Drive y biblioteca con carpetas." />
+    <meta property="og:title" content="Germán Videos Musicales" />
+    <meta property="og:description" content="Convierte tus canciones en videos musicales con letras dinámicas sincronizadas, estilos personalizados, historias web, cámara, Google Drive y biblioteca con carpetas." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="VideosMusic" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/pwa-512x512.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="shortcut icon" href="/pwa-192x192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;800;900&family=Orbitron:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,600&family=Poppins:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-purple-600 selection:text-white">
+    <div id="root">
+      <div id="boot-splash" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;font-family:system-ui,-apple-system,sans-serif;background:#020617;color:#f1f5f9;">
+        <img src="/pwa-192x192.png" alt="Germán Videos Musicales" width="76" height="76" style="border-radius:18px;box-shadow:0 10px 30px rgba(168,85,247,0.35);margin-bottom:16px;" />
+        <h1 style="font-size:20px;font-weight:800;margin:0 0 6px 0;">Germán Videos Musicales</h1>
+        <p id="boot-status" style="font-size:13px;color:#94a3b8;margin:0;max-width:340px;line-height:1.5;">Cargando estudio de videos...</p>
+        <div id="boot-recovery" style="display:none;margin-top:18px;max-width:360px;background:#0f172a;border:1px solid #334155;border-radius:16px;padding:14px;">
+          <p id="boot-recovery-msg" style="font-size:12px;color:#cbd5e1;margin:0 0 12px 0;line-height:1.5;"></p>
+          <button id="boot-retry-btn" type="button" style="background:linear-gradient(90deg,#9333ea,#ec4899);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;">Reintentar carga</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var timer = setTimeout(function () {
+          var splash = document.getElementById('boot-splash');
+          if (!splash) return;
+          var statusEl = document.getElementById('boot-status');
+          var recEl = document.getElementById('boot-recovery');
+          var msgEl = document.getElementById('boot-recovery-msg');
+          var btnEl = document.getElementById('boot-retry-btn');
+          if (!recEl || !msgEl || !btnEl) return;
+          var isDevHost = typeof location !== 'undefined' && location.hostname.indexOf('ais-dev-') === 0;
+          if (statusEl) statusEl.textContent = 'No se pudo completar la carga inicial.';
+          msgEl.textContent = isDevHost
+            ? 'Esta vista previa (ais-dev) depende de que AI Studio esté abierto. Publica la app con Deploy (Cloud Run) e instálala desde su enlace publicado para abrirla de forma independiente.'
+            : 'La conexión tardó o hay caché antiguo guardado. Limpia caché y vuelve a intentar.';
+          recEl.style.display = 'block';
+          btnEl.onclick = function () {
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function (regs) {
+                return Promise.all(regs.map(function (r) { return r.unregister(); }));
+              }).finally(function () { location.reload(); });
+            } else {
+              location.reload();
+            }
+          };
+        }, 7000);
+        window.__clearBootSplashTimer = function () { clearTimeout(timer); };
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

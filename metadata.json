@@ -1,0 +1,6 @@
+{
+  "name": "Germán Videos Musicales",
+  "description": "Convierte tus canciones en videos musicales con letras dinámicas sincronizadas, estilos personalizados, historias web, cámara, Google Drive y biblioteca con carpetas.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

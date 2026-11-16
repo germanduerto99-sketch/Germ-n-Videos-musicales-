@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="256" rx="112" fill="url(#gloss)"/>
+  <!-- Film & Music studio emblem centered inside 80% safe zone -->
+  <g fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Film frame -->
+    <rect x="116" y="148" width="212" height="216" rx="34" fill="#0f172a" fill-opacity="0.28"/>
+    <line x1="168" y1="148" x2="168" y2="364"/>
+    <line x1="276" y1="148" x2="276" y2="364"/>
+    <line x1="116" y1="220" x2="168" y2="220"/>
+    <line x1="116" y1="292" x2="168" y2="292"/>
+    <line x1="276" y1="220" x2="328" y2="220"/>
+    <line x1="276" y1="292" x2="328" y2="292"/>
+    <!-- Play triangle inside frame -->
+    <polygon points="204,224 256,256 204,288" fill="#ffffff" stroke="none"/>
+  </g>
+  <!-- Beamed musical note accent -->
+  <g fill="#ffffff">
+    <circle cx="348" cy="316" r="32"/>
+    <path d="M366 316 V154 l58 -16 v38 l-34 10 v130 z"/>
+  </g>
+</svg>
